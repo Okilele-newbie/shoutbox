@@ -17,6 +17,7 @@
     "react-dom": "^16.8.6",
     "react-markdown": "^4.2.2",
     "react-scripts": "3.0.1",
+    "request": "^2.79.0",
     "solid-auth-client": "^2.3.0",
     "solid-file-client": "^0.5.2",
     "tripledoc": "^3.0.1",

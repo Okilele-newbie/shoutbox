@@ -38,7 +38,7 @@ export default class MetaUtils {
             mimeType: 'ttl',
             creationDate: new Date(),
             tags: [
-                { tagType: 'AppName', value: 'shoutbox' },
+                { tagType: 'AppName', value: 'shoutbox', published: true },
             ]
         } as Meta
 
@@ -59,20 +59,11 @@ export default class MetaUtils {
     static async getAllLocalMetas() {
         let allMetas = [] as Meta[]
         var json: string = await FileUtils.readFileAsString(await this.getMetaIndexFilePath())
-        allMetas = JSON.parse(json)
+        if (json !== '') allMetas = JSON.parse(json)
         return allMetas
     }
 
     static async getCentralMetas(): Promise<Array<any>> {
-        /*
-        return new Promise(async (resolve, reject) => {
-            await CouchDb.getShoutBoxMetas()
-                .then(
-                    (centralTags: MetaTag[]) => {resolve(centralTags)}
-                )
-        })
-*/
         return await CouchDb.getShoutBoxMetas()
-
     }
 }

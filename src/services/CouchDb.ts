@@ -17,8 +17,8 @@ export default class CouchDb {
   static couchDbBaseUrl = `${CouchDb.couchDbServerUrl}/${CouchDb.couchDbDatabaseName}`
 
   static async getShoutBoxMetas(): Promise<Array<any>> {
-       //http://127.0.0.1:5984/solidfilemanager/_design/DesignDoc/_view/MetasByTags?key="shoutbox"
-       const url: string = `${this.couchDbBaseUrl}/_design/DesignDoc/_view/MetasByTags?key="shoutbox"`
+       //http://127.0.0.1:5984/solidfilemanager/_design/DesignDoc/_view/MetasByTags?startkey=["shoutbox","9999"]&endkey=["shoutbox"]&descending=true&limit=25
+       const url: string = `${this.couchDbBaseUrl}/_design/DesignDoc/_view/MetasByTags?startkey=["shoutbox"]&endkey=["shoutbox","9999"]&limit=25`
        return await this.executeQueryonCouch(url)
    }
 
@@ -27,7 +27,6 @@ export default class CouchDb {
       const xhr = this.CreateRequest('GET', url);
       if (xhr) {
         xhr.onload = () => {
-          const response = [] as any[]
           if (xhr.status >= 200 && xhr.status < 300) {
             let res = JSON.parse(xhr.response)
             resolve(res.rows)

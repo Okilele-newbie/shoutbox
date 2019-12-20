@@ -1,6 +1,6 @@
 import { rdf, schema } from 'rdf-namespaces';
 import { TripleDocument } from 'tripledoc';
-import { createDocument } from 'tripledoc';
+import { createDocument, fetchDocument } from 'tripledoc';
 import { addToTypeIndex } from './addToTypeIndex';
 import { fetchProfile } from './fetchProfile';
 import { fetchPublicTypeIndex } from './fetchPublicTypeIndex';
@@ -19,6 +19,9 @@ export async function addNote(note: string, notesList: TripleDocument[]): Promis
   newNoteSubject.addLiteral(schema.text, note);
   newNoteSubject.addLiteral(schema.dateCreated, new Date(Date.now()))
   await newNote.save();
+  //reload else asRef unknown for newNoteSubject
+  const document = await fetchDocument(newNote.asRef());
+  notesList.push(document)
 
   //TTL public index
   const [profile, publicTypeIndex] = await Promise.all([fetchProfile(), fetchPublicTypeIndex()]);
@@ -29,7 +32,6 @@ export async function addNote(note: string, notesList: TripleDocument[]): Promis
   //Meta on local and central
   MetaUtils.createMeta(notesListRef)
 
-  notesList.push(newNote)
   return notesList
 }
 

@@ -8,6 +8,11 @@ interface Props {
   onChange: (updatedContent: string) => Promise<TripleSubject | undefined>;
 };
 
+const sectionStyle = {
+  padding: '0.5rem 1rem 0.5rem 1rem',
+  backgroundColor: 'lightgray'
+};
+
 export const Note: React.FC<Props> = (props) => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -73,7 +78,7 @@ export const Note: React.FC<Props> = (props) => {
       style={{cursor: 'pointer'}}
       onClick={() => setIsEditing(true)}
     >
-      <div className="section content">
+      <div className=" content" style={sectionStyle}>
         <Markdown source={note || ''}/>
       </div>
     </article>

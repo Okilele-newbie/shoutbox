@@ -5,6 +5,18 @@ import { TripleSubject, TripleDocument } from 'tripledoc';
 import { schema } from 'rdf-namespaces';
 import { Note } from './Note';
 
+const notesStyle = {
+  height: '300px',
+  overflow: 'auto',
+
+};
+const noteStyle = {
+  padding: '0 20px 0 20px',
+  marginTop: '0',
+  paddingTop: '0'
+};
+
+
 export const NotesList: React.FC = () => {
   const notesList = useNotesList();
   const [formContent, setFormContent] = React.useState('');
@@ -14,18 +26,29 @@ export const NotesList: React.FC = () => {
     return null;
   }
   const notes = getNotes(updatedNotesList || notesList);
-
+  //Save note on main textarea
   async function saveNote(event: React.FormEvent) {
-    /*
     event.preventDefault();
     if (!notesList) {
       return;
     }
     const updatedDoc = await addNote(formContent, notesList);
     setUpdatedNotesList(updatedDoc);
-    */
-    setFormContent('');
 
+    const objDiv = document.getElementById("notesContainer");
+    if (objDiv) {
+      //objDiv.scrollTop = objDiv.scrollHeight;
+      //objDiv.scrollTop = 1000//objDiv.scrollHeight - objDiv.clientHeight;
+      setTimeout(function() {
+        console.log(objDiv.scrollHeight);
+        console.log(objDiv.scrollTop);
+        objDiv.scrollTop = objDiv.scrollHeight;
+     
+        console.log(objDiv.scrollTop);
+     }, 100);
+    }
+
+    setFormContent('');
   }
 
   async function editNote(content: string, note: TripleSubject) {
@@ -42,7 +65,7 @@ export const NotesList: React.FC = () => {
     setUpdatedNotesList(updatedDoc);
     return updatedDoc.getSubject(note.asRef());
     */
-   return note
+    return note
   }
 
   async function deleteNote(note: TripleSubject) {
@@ -60,9 +83,9 @@ export const NotesList: React.FC = () => {
     */
   }
 
-  const noteElements = notes.sort(byDate).map((note) => (
-    <div key={note.asRef()} className="media">
-      <div className="media-content">
+  const noteElements = notes.map((note) => (
+    <div key={note.asRef()} style={noteStyle} id="notesContainer">
+        {note.asRef().split('/')[2]}
         <Note
           note={note}
           onChange={(updatedContent) => editNote(updatedContent, note)}
@@ -73,16 +96,19 @@ export const NotesList: React.FC = () => {
             onClick={() => deleteNote(note)}
             title="Delete this note"
             className="button is-text"
-            style={{textDecoration: 'none'}}
+            style={{ textDecoration: 'none' }}
           >🗙</button>
         </p>
-      </div>
     </div>
   ));
 
   return (
     <>
-      <section className="section">
+      <section>
+        <div style={notesStyle}>
+          {noteElements}
+        </div>
+
         <form onSubmit={saveNote}>
           <div className="field">
             <div className="control">
@@ -102,19 +128,19 @@ export const NotesList: React.FC = () => {
           </div>
         </form>
       </section>
-      <section className="section">
-        {noteElements}
-      </section>
+
     </>
   );
 };
 
+/*
+unused, done in CouchDb
 function byDate(note1: TripleSubject, note2: TripleSubject): number {
   const date1 = note1.getDateTime(schema.dateCreated);
   const date2 = note2.getDateTime(schema.dateCreated);
   if (!(date1 instanceof Date) || !(date2 instanceof Date)) {
     return 0;
   }
-
   return date2.getTime() - date1.getTime();
 }
+*/
