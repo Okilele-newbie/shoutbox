@@ -1,6 +1,6 @@
 import React from 'react';
 import { fetchDocument, TripleDocument, TripleSubject } from 'tripledoc';
-import { solid, schema } from 'rdf-namespaces';
+import { schema } from 'rdf-namespaces';
 import { usePublicTypeIndex } from './usePublicTypeIndex';
 //import { initialiseNotesList } from '../services/initialiseNotesList';
 import MetaUtils from '../services/MetaUtils'

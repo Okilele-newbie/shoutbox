@@ -2,7 +2,6 @@ import React from 'react';
 import { addNote } from '../services/addNote';
 import { getNotes, useNotesList } from '../hooks/useNotesList';
 import { TripleSubject, TripleDocument } from 'tripledoc';
-import { schema } from 'rdf-namespaces';
 import { Note } from './Note';
 
 const notesStyle = {

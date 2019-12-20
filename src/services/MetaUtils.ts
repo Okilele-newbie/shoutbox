@@ -19,7 +19,7 @@ export interface Meta {
 
 export default class MetaUtils {
     static tagDir = '/public'
-    static tagFileName = '_Meta7.json'
+    static tagFileName = '_Meta.json'
     static metaIndexFilePath: string
 
     static async getMetaIndexFilePath() {
