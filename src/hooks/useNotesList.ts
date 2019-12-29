@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchDocument, TripleDocument, TripleSubject } from 'tripledoc';
+import { fetchDocument, createDocument, TripleDocument, TripleSubject } from 'tripledoc';
 import { schema } from 'rdf-namespaces';
 import { usePublicTypeIndex } from './usePublicTypeIndex';
 //import { initialiseNotesList } from '../services/initialiseNotesList';
@@ -18,7 +18,13 @@ export function useNotesList() {
       const centralMetas = await MetaUtils.getCentralMetas() as any[]
       let notes = [] as TripleDocument[]
       for (let i = 0; i < centralMetas.length; i++) {
-        const document = await fetchDocument('https://' + centralMetas[i].value.hostName + centralMetas[i].value.pathName);
+        let document
+        try {
+          document = await fetchDocument('https://' + centralMetas[i].value.hostName + centralMetas[i].value.pathName);
+        } catch {
+          //document was deleted but not the index
+          document = createDocument('')
+        }
         notes.push(document)
       }
       setNotesList(notes);

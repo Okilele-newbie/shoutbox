@@ -10,8 +10,9 @@ import MetaUtils from './MetaUtils'
 export async function addNote(note: string, notesList: TripleDocument[]): Promise<TripleDocument[]> {
 
   //TTL file
+  FileUtils.checkNotesFolder()
   let root = await FileUtils.getRoot() || ''
-  const path = `/public/notepod/note${Math.floor(Date.now() / 1000)}.ttl`;
+  const path = `/public/shoutbox/note${Math.floor(Date.now() / 1000)}.ttl`;
   const notesListRef = `${root}${path}`;
   const newNote = createDocument(notesListRef);
   const newNoteSubject = newNote.addSubject();
@@ -19,7 +20,7 @@ export async function addNote(note: string, notesList: TripleDocument[]): Promis
   newNoteSubject.addLiteral(schema.text, note);
   newNoteSubject.addLiteral(schema.dateCreated, new Date(Date.now()))
   await newNote.save();
-  //reload else asRef unknown for newNoteSubject
+  //reload else asRef is unknown for newNoteSubject
   const document = await fetchDocument(newNote.asRef());
   notesList.push(document)
 
@@ -34,17 +35,3 @@ export async function addNote(note: string, notesList: TripleDocument[]): Promis
 
   return notesList
 }
-
-/*
-import { TripleDocument } from 'tripledoc';
-import { rdf, schema } from 'rdf-namespaces';
-
-export async function addNote(note: string, notesList: TripleDocument): Promise<TripleDocument> {
-  const newNote = notesList.addSubject();
-  newNote.addRef(rdf.type, schema.TextDigitalDocument);
-  newNote.addLiteral(schema.text, note);
-  newNote.addLiteral(schema.dateCreated, new Date(Date.now()))
-
-  return await notesList.save([newNote]);
-}
-*/

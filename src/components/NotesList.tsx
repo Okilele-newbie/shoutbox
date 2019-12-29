@@ -3,13 +3,12 @@ import { addNote } from '../services/addNote';
 import { getNotes, useNotesList } from '../hooks/useNotesList';
 import { TripleSubject, TripleDocument } from 'tripledoc';
 import { Note } from './Note';
+import { AutoBodyShop } from 'rdf-namespaces/dist/schema';
 
-const notesStyle = {
-  height: '300px',
-  overflow: 'auto',
 
-};
 const noteStyle = {
+  overflow: 'auto',
+  height: '60vh',
   padding: '0 20px 0 20px',
   marginTop: '0',
   paddingTop: '0'
@@ -25,6 +24,7 @@ export const NotesList: React.FC = () => {
     return null;
   }
   const notes = getNotes(updatedNotesList || notesList);
+
   //Save note on main textarea
   async function saveNote(event: React.FormEvent) {
     event.preventDefault();
@@ -33,21 +33,15 @@ export const NotesList: React.FC = () => {
     }
     const updatedDoc = await addNote(formContent, notesList);
     setUpdatedNotesList(updatedDoc);
-
-    const objDiv = document.getElementById("notesContainer");
-    if (objDiv) {
-      //objDiv.scrollTop = objDiv.scrollHeight;
-      //objDiv.scrollTop = 1000//objDiv.scrollHeight - objDiv.clientHeight;
-      setTimeout(function() {
-        console.log(objDiv.scrollHeight);
-        console.log(objDiv.scrollTop);
-        objDiv.scrollTop = objDiv.scrollHeight;
-     
-        console.log(objDiv.scrollTop);
-     }, 100);
-    }
-
     setFormContent('');
+  }
+
+  function scrollToBottom() {
+    const obj = document.getElementById("notesContainer") as HTMLElement;
+    if (obj) {
+      setTimeout(function () { obj.scrollTop = obj.scrollHeight; }
+        , 500);
+    }
   }
 
   async function editNote(content: string, note: TripleSubject) {
@@ -83,28 +77,31 @@ export const NotesList: React.FC = () => {
   }
 
   const noteElements = notes.map((note) => (
-    <div key={note.asRef()} style={noteStyle} id="notesContainer">
-        {note.asRef().split('/')[2]}
-        <Note
-          note={note}
-          onChange={(updatedContent) => editNote(updatedContent, note)}
-        />
-        <p className="has-text-right">
-          <button
-            aria-label="Delete this note"
-            onClick={() => deleteNote(note)}
-            title="Delete this note"
-            className="button is-text"
-            style={{ textDecoration: 'none' }}
-          >🗙</button>
-        </p>
+    note !== undefined
+    ? ( 
+    <div key={note.asRef()}>
+      {note.asRef().split('/')[2]}
+      <Note
+        note={note}
+        onChange={(updatedContent) => editNote(updatedContent, note)}
+      />
+      <p className="has-text-right">
+        <button
+          aria-label="Delete this note"
+          onClick={() => deleteNote(note)}
+          title="Delete this note"
+          className="button is-text"
+          style={{ textDecoration: 'none' }}
+        >🗙</button>
+      </p>
     </div>
+    ) : ( <span></span> )
   ));
 
   return (
     <>
       <section>
-        <div style={notesStyle}>
+        <div style={noteStyle} id="notesContainer">
           {noteElements}
         </div>
 
@@ -127,8 +124,9 @@ export const NotesList: React.FC = () => {
           </div>
         </form>
       </section>
-
+      {scrollToBottom()}
     </>
+
   );
 };
 

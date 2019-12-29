@@ -38,7 +38,7 @@ export default class FileUtils {
     }
     
     static async checkNotesFolder () {
-        const notesFolderRef = await this.getRoot() + 'public/notepod';
+        const notesFolderRef = await this.getRoot() + 'public/shoutbox';
         FileClient.readFolder(notesFolderRef)
         .then (
             null ,

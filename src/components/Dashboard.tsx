@@ -5,7 +5,7 @@ import { NotesList } from './NotesList';
 
 const container = {
   padding: '0.5rem 1rem 0.5rem 1rem',
-  maxWidth: '50%'
+  maxWidth: '60%'
 }
 
 const footer = {
@@ -16,7 +16,7 @@ const footer = {
 export const Dashboard: React.FC = () => {
   return <>
     <div style={container}>
-      <h1 style={{fontSize: '2rem'}}>
+      <h1 style={{ fontSize: '2rem' }}>
         shoutbox
       </h1>
       <NotesList />
