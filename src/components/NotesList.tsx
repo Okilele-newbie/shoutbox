@@ -3,8 +3,6 @@ import { addNote } from '../services/addNote';
 import { getNotes, useNotesList } from '../hooks/useNotesList';
 import { TripleSubject, TripleDocument } from 'tripledoc';
 import { Note } from './Note';
-import { AutoBodyShop } from 'rdf-namespaces/dist/schema';
-
 
 const noteStyle = {
   overflow: 'auto',
@@ -45,35 +43,7 @@ export const NotesList: React.FC = () => {
   }
 
   async function editNote(content: string, note: TripleSubject) {
-    //should save individual note and erload/update notesList (as array)
-    /*
-    const notesDocument = updatedNotesList || notesList;
-    if (!notesDocument) {
-      return;
-    }
-
-    note.setLiteral(schema.text, content);
-    note.setLiteral(schema.dateModified, new Date(Date.now()));
-    const updatedDoc = await notesDocument.save();
-    setUpdatedNotesList(updatedDoc);
-    return updatedDoc.getSubject(note.asRef());
-    */
     return note
-  }
-
-  async function deleteNote(note: TripleSubject) {
-    //should save individual note and erload/update notesList (as array)
-    /*
-
-    const notesDocument = updatedNotesList || notesList;
-    if (!notesDocument) {
-      return;
-    }
-
-    notesDocument.removeSubject(note.asRef());
-    const updatedDoc = await notesDocument.save();
-    setUpdatedNotesList(updatedDoc);
-    */
   }
 
   const noteElements = notes.map((note) => (
@@ -85,15 +55,6 @@ export const NotesList: React.FC = () => {
         note={note}
         onChange={(updatedContent) => editNote(updatedContent, note)}
       />
-      <p className="has-text-right">
-        <button
-          aria-label="Delete this note"
-          onClick={() => deleteNote(note)}
-          title="Delete this note"
-          className="button is-text"
-          style={{ textDecoration: 'none' }}
-        >🗙</button>
-      </p>
     </div>
     ) : ( <span></span> )
   ));

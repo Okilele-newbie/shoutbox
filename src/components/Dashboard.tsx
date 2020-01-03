@@ -22,12 +22,6 @@ export const Dashboard: React.FC = () => {
       <NotesList />
       <footer style={footer}>
         <div className="columns">
-          <p className="column content">
-            <a
-              href="https://gitlab.com/vincenttunru/notepod/"
-              title="View the source code on GitLab"
-            >Source code</a>
-          </p>
           <div className="column has-text-right">
             <LogoutButton className="button" />
           </div>

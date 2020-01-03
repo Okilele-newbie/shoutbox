@@ -12,13 +12,15 @@ export interface FoundTags {
 
 export default class CouchDb {
 
-  static couchDbServerUrl = `http://127.0.0.1:5984`
-  static couchDbDatabaseName = `solidfilemanager`
+  static couchDbServerUrl = `http://91.186.9.6:5984`
+  static couchDbDatabaseName = `solid`
+  //static couchDbServerUrl = `http://127.0.0.1:5984`
+  //static couchDbDatabaseName = `solidfilemanager`
   static couchDbBaseUrl = `${CouchDb.couchDbServerUrl}/${CouchDb.couchDbDatabaseName}`
 
   static async getShoutBoxMetas(): Promise<Array<any>> {
-       //http://127.0.0.1:5984/solidfilemanager/_design/DesignDoc/_view/MetasByTags?startkey=["shoutbox","9999"]&endkey=["shoutbox"]&descending=true&limit=25
-       const url: string = `${this.couchDbBaseUrl}/_design/DesignDoc/_view/MetasByTags?startkey=["shoutbox"]&endkey=["shoutbox","9999"]&limit=25`
+       const url = `${this.couchDbBaseUrl}/_design/DesignDoc/_view/MetasByTagsAndDates?startkey="appName:shoutbox"&endkey="appName:shoutboxZ"&descending=false&limit=25`
+       console.log(url)
        return await this.executeQueryonCouch(url)
    }
 

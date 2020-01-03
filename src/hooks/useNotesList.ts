@@ -36,7 +36,6 @@ export function useNotesList() {
 }
 
 export function getNotes(notesList: TripleDocument[]): TripleSubject[] {
-  //return notesList.getSubjectsOfType(schema.TextDigitalDocument);
   let subjectsList = [] as TripleSubject[]
   notesList.forEach((note: TripleDocument) => {
     subjectsList.push(note.getSubjectsOfType(schema.TextDigitalDocument)[0])
