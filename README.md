@@ -5,7 +5,7 @@ Very simple, enter a text, click on "Add Note" and you see it in the list. Waouh
 The note (or actually the post) is in your public/shoutbox folder but anybody connected to the shoutbox can see it.
 That's it!
 
-So shoutbox can read and also edit data in any Pod! Nothing really new or surprising but shoutbox can easily do it using funcitonnalities provided by Solid combined with a central index.
+So Shoutbox can read and also edit data in any Pod! Nothing really new or surprising but Shoutbox can easily do it using funcitonnalities provided by Solid combined with a central index.
 
 So play around with this tool (you should not spend a lot of time...), enjoy and let us know if the central tag index idea worth growing up ...
 
@@ -20,7 +20,7 @@ In order to fix this:
   - IE/Edge : Does not work, I did not investigate  
 So, at least for those tests, please use Chrome or Opera (same engine).
 
-- Shoutbox can read ... and also edit files from other Pods.
+- Users using Shoutbox can read ... and also edit files from other Pods.
   - You added https://okilele-newbie.github.io to trusted apps. By default this means other can read your Pod/public and only you can write.
   - If you want to OTHER write on your Pod you must grant "something"* write access to /public/shoutbox folder. Take care if you do so, edited posts will appear on behalf on you!    
   
