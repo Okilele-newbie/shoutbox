@@ -12,7 +12,7 @@ So play around with this tool (you should not spend a lot of time...), enjoy and
 **Technical information**
 - Pages include content from Solid using https and also:
   - data from CouchDb and this is active mixed content as the CouchDb server is not https.
-  - cross-origin content as  the CouchDb server has its own IP.  
+  - cross-origin content as  the CouchDb server has its own IP.    
 Browsers don't like !  
 In order to fix this:
   - Chrome/Opera: Just allow blocked content when prompted.
