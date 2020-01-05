@@ -21,7 +21,7 @@ In order to fix this:
   - IE/Edge : Does not work, I did not investigate  
 So, at least for those tests, please use Chrome or Opera (same engine).
 
-- Users using Shoutbox can read ... and also edit files from other Pods.
+- Users using Shoutbox can read ... and also edit files from other Pods (click on a post to edit it).
   - You added https://okilele-newbie.github.io to trusted apps. By default this means other can read your Pod/public and only you can write.
   - If you want to OTHER write on your Pod you must grant "something"* write access to /public/shoutbox folder. Take care if you do so, edited posts will appear on behalf of you!    
   
