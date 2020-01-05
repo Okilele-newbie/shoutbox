@@ -17,7 +17,7 @@ Browsers don't like !
 In order to fix this:
   - Chrome/Opera: Just allow blocked content when prompted.
   - Firefox: Allowing mixed content is easy in about:config parameters. It should be the same for Cors with the content.cors.disable parameter but this doesn't work ...
-  - IE/Edge : Does not work, I did not investigate
+  - IE/Edge : Does not work, I did not investigate  
 So, at least for those tests, please use Chrome or Opera (same engine).
 
 - Shoutbox can read ... and also edit files from other Pods.
