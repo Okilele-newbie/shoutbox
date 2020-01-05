@@ -1,7 +1,7 @@
 **How it works** 
 First allow https://okilele-newbie.github.io to read/write access mode to your Pod
 Then:
-Very simple, enteer a text, click on "Add Note" and you see it in the list. Waouh!
+Very simple, enter a text, click on "Add Note" and you see it in the list. Waouh!
 The note (or actually the post) is in your public/shoutbox folder but anybody connected to the shoutbox can see it.
 That's it!
 
@@ -21,8 +21,7 @@ In order to fix this:
 So, at least for those tests, please use Chrome or Opera (same engine).
 
 - Shoutbox can read ... and also edit files from other Pods.
-  - To use shoutbox grant the shoutbox access to your Pod (trusted app: https://okilele-newbie.github.io, no end "/"). 
-    By default this means other can read your Pod/public and only you can write.
+  - You added https://okilele-newbie.github.io to trusted apps. By default this means other can read your Pod/public and only you can write.
   - If you want to OTHER write on your Pod you must grant "something"* write access to /public/shoutbox folder. Take care if you do so, edited posts will appear on behalf on you!    
   
   *"something": I thougt this should be the application but this does not work, neither other users webid. Only "everyone" (with the globe icon) works.
