@@ -1,5 +1,6 @@
 **How it works**  
-First allow https://okilele-newbie.github.io to read/write access mode to your Pod  
+First allow https://okilele-newbie.github.io to read/write access mode to your Pod    
+When loading check there is no blocked content, unblock it if necessary (I did not have time to check everything is secure from browsers's point of view)  
 Then:  
 Very simple, enter a text, click on "Add Note" and you see it in the list. Waouh!  
 The note (or actually the post) is in your public/shoutbox folder but anybody connected to the Shoutbox can see it.  
