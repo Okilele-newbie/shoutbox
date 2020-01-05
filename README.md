@@ -1,4 +1,4 @@
-**How it works** 
+**How it works**  
 First allow https://okilele-newbie.github.io to read/write access mode to your Pod  
 Then:  
 Very simple, enter a text, click on "Add Note" and you see it in the list. Waouh!  
