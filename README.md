@@ -5,11 +5,11 @@ Very simple, enter a text, click on "Add Note" and you see it in the list. Waouh
 The note (or actually the post) is in your public/shoutbox folder but anybody connected to the shoutbox can see it.
 That's it!
 
-So shoutbox can read and edit* any (public) data in any Pod! Nothing really new or surprising but shoutbox can easimy do it using funcitonnalities provided by Solid.
+So shoutbox can read and edit* any (public) data in any Pod! Nothing really new or surprising but shoutbox can easily do it using funcitonnalities provided by Solid combined with a central index.
 
 So play around with this tool (you should not spend a lot of time...), enjoy and let us know if the central tag index idea worth growing up ...
 
-* Technical information
+** Technical information**
 - Pages include content from Solid using https and also:
   - data from CouchDb and this is active mixed content as the CouchDb server is not https.
   - cross-origin content as  the CouchDb server has its own IP.
