@@ -16,7 +16,7 @@ So play around with this tool (you should not spend a lot of time...), enjoy and
   - cross-origin content as  the CouchDb server has its own IP.    
 Browsers don't like !  
 In order to fix this:
-  - Chrome/Opera: Just allow blocked content when prompted.
+  - Chrome/Opera: Just allow blocked content if prompted.
   - Firefox: Allowing mixed content is easy in about:config parameters. It should be the same for Cors with the content.cors.disable parameter but this doesn't work ...
   - IE/Edge : Does not work, I did not investigate  
 So, at least for those tests, please use Chrome or Opera (same engine).
