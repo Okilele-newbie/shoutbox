@@ -9,7 +9,7 @@ So shoutbox can read and also edit data in any Pod! Nothing really new or surpri
 
 So play around with this tool (you should not spend a lot of time...), enjoy and let us know if the central tag index idea worth growing up ...
 
-** Technical information**
+**Technical information**
 - Pages include content from Solid using https and also:
   - data from CouchDb and this is active mixed content as the CouchDb server is not https.
   - cross-origin content as  the CouchDb server has its own IP.
